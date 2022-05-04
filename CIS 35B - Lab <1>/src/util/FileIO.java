@@ -1,18 +1,18 @@
 package util;
 
-import model.Automative;
+import model.Automobile;
 
 import java.io.*;
 
 public class FileIO {
-    public Automative buildAutoObject (String fileName) {
+    public Automobile buildAutoObject (String fileName) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
 
             String name = br.readLine();
             float basePrice = Float.parseFloat(br.readLine());
             int size = Integer.parseInt(br.readLine());
-            Automative a = new Automative(name, basePrice, size);
+            Automobile a = new Automobile(name, basePrice, size);
 
             for (int i = 0; i < size; i++) { // optionset
                 br.readLine(); // skip a line
@@ -32,12 +32,12 @@ public class FileIO {
             br.close();
             return a;
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
+            //e.printStackTrace();
         }
-        return null;
     }
 
-    public void serialize (Automative a, String fileName) {
+    public void serialize (Automobile a, String fileName) {
         try {
             ObjectOutputStream oo = new ObjectOutputStream(new FileOutputStream(fileName));
             oo.writeObject(a);
@@ -47,10 +47,10 @@ public class FileIO {
         }
     }
 
-    public Automative deserialize (String filename) {
+    public Automobile deserialize (String filename) {
         try {
             ObjectInputStream oi = new ObjectInputStream(new FileInputStream(filename));
-            Automative a = (Automative) oi.readObject();
+            Automobile a = (Automobile) oi.readObject();
             oi.close();
             return a;
         } catch (IOException e) {
