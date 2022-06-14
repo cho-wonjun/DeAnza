@@ -1,0 +1,214 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 sqluser26\
+#3\
+Won Jun Cho\
+3263\
+2/1/2022\
+1/30/2022\
+1)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \CocoaLigature0 SQL> select e.empno "Emp Number", e.ename "Emp Name", e.hiredate "Hiredate", m.ename "Mgr Name"\
+  2  from emp e, emp m\
+  3  where e.mgr = m.empno and (m.ename like 'K%' or m.ename like 'M%' or m.ename like 'S%');\
+\
+Emp Number Emp Name   Hiredate	Mgr Name\
+---------- ---------- --------- ----------\
+      7876 ADAMS      12-JAN-83 SCOTT\
+      7782 CLARK      09-JUN-81 KING\
+      7698 BLAKE      01-MAY-81 KING\
+      7566 JONES      02-APR-81 KING\
+2)\
+SQL> select e.ename "Emp", a.ename "Coworker", e.deptno "Dept Num", d.dname "Dept Name"\
+  2  from emp e, emp a, dept d\
+  3  where e.deptno = d.deptno and e.deptno = a.deptno and e.empno != a.empno;\
+\
+Emp	   Coworker	Dept Num Dept Name\
+---------- ---------- ---------- --------------\
+MILLER	   KING 	      10 ACCOUNTING\
+CLARK	   KING 	      10 ACCOUNTING\
+MARTIN	   BLAKE	      30 SALES\
+ALLEN	   BLAKE	      30 SALES\
+TURNER	   BLAKE	      30 SALES\
+JAMES	   BLAKE	      30 SALES\
+WARD	   BLAKE	      30 SALES\
+MILLER	   CLARK	      10 ACCOUNTING\
+KING	   CLARK	      10 ACCOUNTING\
+FORD	   JONES	      20 RESEARCH\
+ADAMS	   JONES	      20 RESEARCH\
+\
+Emp	   Coworker	Dept Num Dept Name\
+---------- ---------- ---------- --------------\
+SCOTT	   JONES	      20 RESEARCH\
+SMITH	   JONES	      20 RESEARCH\
+John Smith JONES	      20 RESEARCH\
+BLAKE	   MARTIN	      30 SALES\
+ALLEN	   MARTIN	      30 SALES\
+TURNER	   MARTIN	      30 SALES\
+JAMES	   MARTIN	      30 SALES\
+WARD	   MARTIN	      30 SALES\
+BLAKE	   ALLEN	      30 SALES\
+MARTIN	   ALLEN	      30 SALES\
+TURNER	   ALLEN	      30 SALES\
+\
+Emp	   Coworker	Dept Num Dept Name\
+---------- ---------- ---------- --------------\
+JAMES	   ALLEN	      30 SALES\
+WARD	   ALLEN	      30 SALES\
+BLAKE	   TURNER	      30 SALES\
+MARTIN	   TURNER	      30 SALES\
+ALLEN	   TURNER	      30 SALES\
+JAMES	   TURNER	      30 SALES\
+WARD	   TURNER	      30 SALES\
+BLAKE	   JAMES	      30 SALES\
+MARTIN	   JAMES	      30 SALES\
+ALLEN	   JAMES	      30 SALES\
+TURNER	   JAMES	      30 SALES\
+\
+Emp	   Coworker	Dept Num Dept Name\
+---------- ---------- ---------- --------------\
+WARD	   JAMES	      30 SALES\
+BLAKE	   WARD 	      30 SALES\
+MARTIN	   WARD 	      30 SALES\
+ALLEN	   WARD 	      30 SALES\
+TURNER	   WARD 	      30 SALES\
+JAMES	   WARD 	      30 SALES\
+ADAMS	   FORD 	      20 RESEARCH\
+SCOTT	   FORD 	      20 RESEARCH\
+SMITH	   FORD 	      20 RESEARCH\
+JONES	   FORD 	      20 RESEARCH\
+John Smith FORD 	      20 RESEARCH\
+\
+Emp	   Coworker	Dept Num Dept Name\
+---------- ---------- ---------- --------------\
+FORD	   SMITH	      20 RESEARCH\
+ADAMS	   SMITH	      20 RESEARCH\
+SCOTT	   SMITH	      20 RESEARCH\
+JONES	   SMITH	      20 RESEARCH\
+John Smith SMITH	      20 RESEARCH\
+FORD	   SCOTT	      20 RESEARCH\
+ADAMS	   SCOTT	      20 RESEARCH\
+SMITH	   SCOTT	      20 RESEARCH\
+JONES	   SCOTT	      20 RESEARCH\
+John Smith SCOTT	      20 RESEARCH\
+FORD	   ADAMS	      20 RESEARCH\
+\
+Emp	   Coworker	Dept Num Dept Name\
+---------- ---------- ---------- --------------\
+SCOTT	   ADAMS	      20 RESEARCH\
+SMITH	   ADAMS	      20 RESEARCH\
+JONES	   ADAMS	      20 RESEARCH\
+John Smith ADAMS	      20 RESEARCH\
+CLARK	   MILLER	      10 ACCOUNTING\
+KING	   MILLER	      10 ACCOUNTING\
+FORD	   John Smith	      20 RESEARCH\
+ADAMS	   John Smith	      20 RESEARCH\
+SCOTT	   John Smith	      20 RESEARCH\
+SMITH	   John Smith	      20 RESEARCH\
+JONES	   John Smith	      20 RESEARCH\
+\
+66 rows selected.\
+(don\'92t know how to do this one)\
+\
+3)\
+SQL> select d.deptno, d.loc, e.ename, e.job\
+  2  from emp e, dept d\
+  3  where d.deptno = e.deptno and e.job in ('CLERK');\
+\
+    DEPTNO LOC		 ENAME	    JOB\
+---------- ------------- ---------- ---------\
+	10 NEW YORK	 MILLER     CLERK\
+	20 DALLAS	 SMITH	    CLERK\
+	20 DALLAS	 ADAMS	    CLERK\
+	30 CHICAGO	 JAMES	    CLERK\
+4)\
+SQL> INSERT INTO DEPT VALUES (50, 'TRAINING', 'SAN FRANCISCO');\
+\
+1 row created.\
+\
+SQL> select e.empno, e.ename, d.deptno, d.loc\
+  2  from emp e, dept d\
+  3  where d.deptno = e.deptno(+) and d.deptno in(20, 50);\
+\
+     EMPNO ENAME	  DEPTNO LOC\
+---------- ---------- ---------- -------------\
+      7566 JONES	      20 DALLAS\
+      7902 FORD 	      20 DALLAS\
+      7369 SMITH	      20 DALLAS\
+      7788 SCOTT	      20 DALLAS\
+      7876 ADAMS	      20 DALLAS\
+      1456 John Smith	      20 DALLAS\
+			      50 SAN FRANCISCO\
+\
+7 rows selected.\
+\
+SQL> select e.empno, e.ename, d.deptno, d.loc\
+  2  from emp e, dept d\
+  3  where d.deptno = e.deptno(+) and d.deptno between 20 and 50;\
+\
+     EMPNO ENAME	  DEPTNO LOC\
+---------- ---------- ---------- -------------\
+      7698 BLAKE	      30 CHICAGO\
+      7566 JONES	      20 DALLAS\
+      7654 MARTIN	      30 CHICAGO\
+      7499 ALLEN	      30 CHICAGO\
+      7844 TURNER	      30 CHICAGO\
+      7900 JAMES	      30 CHICAGO\
+      7521 WARD 	      30 CHICAGO\
+      7902 FORD 	      20 DALLAS\
+      7369 SMITH	      20 DALLAS\
+      7788 SCOTT	      20 DALLAS\
+      7876 ADAMS	      20 DALLAS\
+\
+     EMPNO ENAME	  DEPTNO LOC\
+---------- ---------- ---------- -------------\
+      1456 John Smith	      20 DALLAS\
+			      50 SAN FRANCISCO\
+			      40 BOSTON\
+\
+14 rows selected.\
+\
+i don\'92t know which one it\'92s asking \
+\
+5)\
+SQL> SQL> \
+Commit complete.\
+// emp 2 table added \
+\
+SQL> select e.ename, e.deptno, d.deptno, d.dname\
+  2  from emp2 e, dept d\
+  3  where e.deptno(+) = d.deptno\
+  4  union\
+  5  select e.ename, e.deptno, d.deptno, d.dname\
+  6  from emp2 e, dept d\
+  7  where e.deptno = d.deptno(+);\
+\
+ENAME	       DEPTNO	  DEPTNO DNAME\
+---------- ---------- ---------- --------------\
+ADAMS\
+ALLEN		   30	      30 SALES\
+BLAKE		   30	      30 SALES\
+CLARK		   10	      10 ACCOUNTING\
+FORD		   20	      20 RESEARCH\
+JAMES		   30	      30 SALES\
+JONES		   20	      20 RESEARCH\
+KING		   10	      10 ACCOUNTING\
+MARTIN		   30	      30 SALES\
+MILLER\
+SCOTT\
+\
+ENAME	       DEPTNO	  DEPTNO DNAME\
+---------- ---------- ---------- --------------\
+SMITH		   20	      20 RESEARCH\
+TURNER		   30	      30 SALES\
+WARD		   30	      30 SALES\
+			      40 OPERATIONS\
+			      50 TRAINING\
+\
+16 rows selected.}

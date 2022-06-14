@@ -1,0 +1,242 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2636
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 sqluser26\
+#2\
+Won Jun Cho\
+3263\
+1/17/2022\
+1/17/2022\
+\
+1a)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf2 \CocoaLigature0 SQL> select ENAME, JOB, HIREDATE, EMPNO\
+  2  from emp;\
+\
+ENAME	   JOB	     HIREDATE	    EMPNO\
+---------- --------- --------- ----------\
+KING	   PRESIDENT 17-NOV-81	     7839\
+BLAKE	   MANAGER   01-MAY-81	     7698\
+CLARK	   MANAGER   09-JUN-81	     7782\
+JONES	   MANAGER   02-APR-81	     7566\
+MARTIN	   SALESMAN  28-SEP-81	     7654\
+ALLEN	   SALESMAN  20-FEB-81	     7499\
+TURNER	   SALESMAN  08-SEP-81	     7844\
+JAMES	   CLERK     03-DEC-81	     7900\
+WARD	   SALESMAN  22-FEB-81	     7521\
+FORD	   ANALYST   03-DEC-81	     7902\
+SMITH	   CLERK     17-DEC-80	     7369\
+\
+ENAME	   JOB	     HIREDATE	    EMPNO\
+---------- --------- --------- ----------\
+SCOTT	   ANALYST   09-DEC-82	     7788\
+ADAMS	   CLERK     12-JAN-83	     7876\
+MILLER	   CLERK     23-JAN-82	     7934\
+\
+14 rows selected.\
+\
+1b)\
+SQL> select *\
+  2  from emp;\
+\
+     EMPNO ENAME      JOB	       MGR HIREDATE	    SAL       COMM\
+---------- ---------- --------- ---------- --------- ---------- ----------\
+    DEPTNO\
+----------\
+      7839 KING       PRESIDENT 	   17-NOV-81	   5000\
+	10\
+\
+      7698 BLAKE      MANAGER	      7839 01-MAY-81	   2850\
+	30\
+\
+      7782 CLARK      MANAGER	      7839 09-JUN-81	   2450\
+	10\
+\
+\
+     EMPNO ENAME      JOB	       MGR HIREDATE	    SAL       COMM\
+---------- ---------- --------- ---------- --------- ---------- ----------\
+    DEPTNO\
+----------\
+      7566 JONES      MANAGER	      7839 02-APR-81	   2975\
+	20\
+\
+      7654 MARTIN     SALESMAN	      7698 28-SEP-81	   1250       1400\
+	30\
+\
+      7499 ALLEN      SALESMAN	      7698 20-FEB-81	   1600        300\
+	30\
+\
+\
+     EMPNO ENAME      JOB	       MGR HIREDATE	    SAL       COMM\
+---------- ---------- --------- ---------- --------- ---------- ----------\
+    DEPTNO\
+----------\
+      7844 TURNER     SALESMAN	      7698 08-SEP-81	   1500 	 0\
+	30\
+\
+      7900 JAMES      CLERK	      7698 03-DEC-81	    950\
+	30\
+\
+      7521 WARD       SALESMAN	      7698 22-FEB-81	   1250        500\
+	30\
+\
+\
+     EMPNO ENAME      JOB	       MGR HIREDATE	    SAL       COMM\
+---------- ---------- --------- ---------- --------- ---------- ----------\
+    DEPTNO\
+----------\
+      7902 FORD       ANALYST	      7566 03-DEC-81	   3000\
+	20\
+\
+      7369 SMITH      CLERK	      7902 17-DEC-80	    800\
+	20\
+\
+      7788 SCOTT      ANALYST	      7566 09-DEC-82	   3000\
+	20\
+\
+\
+     EMPNO ENAME      JOB	       MGR HIREDATE	    SAL       COMM\
+---------- ---------- --------- ---------- --------- ---------- ----------\
+    DEPTNO\
+----------\
+      7876 ADAMS      CLERK	      7788 12-JAN-83	   1100\
+	20\
+\
+      7934 MILLER     CLERK	      7782 23-JAN-82	   1300\
+	10\
+\
+\
+14 rows selected.\
+\
+1c)\
+SQL> select distinct ename\
+  2  from emp;\
+\
+ENAME\
+----------\
+CLARK\
+TURNER\
+WARD\
+ADAMS\
+KING\
+FORD\
+BLAKE\
+SMITH\
+SCOTT\
+JONES\
+ALLEN\
+\
+ENAME\
+----------\
+JAMES\
+MILLER\
+MARTIN\
+\
+14 rows selected.\
+\
+2)\
+SQL> INSERT INTO EMP VALUES (1456,'John Smith','Analyst',7566,'1/JAN/02',2000,NULL,20);\
+\
+1 row created.\
+\
+3)\
+SQL> update emp\
+  2  set sal = 3000\
+  3  where sal = 2000;\
+\
+1 row updated.\
+\
+4a)\
+SQL> select empno, trim(ename), hiredate\
+  2  from emp\
+  3  where trim(ename) like 'L%L' or ename like '%LL%' or trim(ename) like '%L%L' or ename like 'L%L%';\
+\
+     EMPNO TRIM(ENAME HIREDATE\
+---------- ---------- ---------\
+      7499 ALLEN      20-FEB-81\
+      7934 MILLER     23-JAN-82\
+\
+4b)\
+SQL> select empno, trim(ename), hiredate\
+  2  from emp\
+  3  where trim(ename) like '%N';\
+\
+     EMPNO TRIM(ENAME HIREDATE\
+---------- ---------- ---------\
+      7654 MARTIN     28-SEP-81\
+      7499 ALLEN      20-FEB-81\
+\
+5)\
+SQL> select *\
+  2  from dept\
+  3  where trim(loc) like 'BOSTON';\
+\
+    DEPTNO DNAME	  LOC\
+---------- -------------- -------------\
+	40 OPERATIONS	  BOSTON\
+\
+6)\
+SQL> select empno, ename, deptno, job\
+  2  from emp\
+  3  where trim(job) not like 'MANAGER' and not(deptno = 10 and trim(job) like 'CLERK');\
+\
+     EMPNO ENAME	  DEPTNO JOB\
+---------- ---------- ---------- ---------\
+      7839 KING 	      10 PRESIDENT\
+      7654 MARTIN	      30 SALESMAN\
+      7499 ALLEN	      30 SALESMAN\
+      7844 TURNER	      30 SALESMAN\
+      7900 JAMES	      30 CLERK\
+      7521 WARD 	      30 SALESMAN\
+      7902 FORD 	      20 ANALYST\
+      7369 SMITH	      20 CLERK\
+      7788 SCOTT	      20 ANALYST\
+      7876 ADAMS	      20 CLERK\
+      1456 John Smith	      20 Analyst\
+\
+11 rows selected.\
+\
+7)\
+SQL> select ename\
+  2  from emp\
+  3  where comm > 0 and sal between 1000 and 3000;\
+\
+ENAME\
+----------\
+MARTIN\
+ALLEN\
+WARD\
+\
+8a)\
+SQL> select ename\
+  2  from emp\
+  3  where mgr is null;\
+\
+ENAME\
+----------\
+KING\
+\
+8b)\
+SQL> select empno, ename, sal, mgr\
+  2  from emp\
+  3  where empno in (7566, 7788);\
+\
+     EMPNO ENAME	     SAL	MGR\
+---------- ---------- ---------- ----------\
+      7566 JONES	    2975       7839\
+      7788 SCOTT	    3000       7566\
+\
+SQL> select empno, ename, sal, mgr\
+  2  from emp\
+  3  where empno in (7566, 7788) and trim(job) like 'MANAGER';\
+\
+     EMPNO ENAME	     SAL	MGR\
+---------- ---------- ---------- ----------\
+      7566 JONES	    2975       7839\
+\
+i don\'92t know which one\'85}

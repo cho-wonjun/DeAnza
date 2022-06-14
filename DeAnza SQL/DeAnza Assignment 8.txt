@@ -1,0 +1,34 @@
+sqluser26
+#8
+Won Jun Cho
+3263
+3/20/2022
+3/20/2022
+1)
+INSERT INTO DEPARTMENT VALUES (50482, 'ACCOUNTING', 58729, 84729);
+INSERT INTO LOCATION VALUES (58729, 'CUPERTINO');
+INSERT INTO LOCATION VALUES (39213, 'ONLINE');
+INSERT INTO COLLEGE VALUES (84729, 'DEANZA', 'STEVENS CREEK', 4088645300);
+INSERT INTO COURSE (93827, 93576, 'FINANCE', STATISTIC, 50482);
+INSERT INTO SECTION (29173, 47269, 93827, 39213, 'TBA', 'TBA', '2022-04-01', '2022-06-24', 03829); 
+INSERT INTO SECTION (02937, 59370, 93827, 39213, 'TBA', 'TBA', '2022-04-01', '2022-06-24', 00048);
+
+SELECT * 
+FROM DEPARTMENT, LOCATION L, COLLEGE C, COURSE C0, SECTION S 
+WHERE D.ID = CO.DEPTID AND D.LOCID = L.ID AND D.COLLEGEID = C.ID AND S.COURSEID = CO.ID AND S.LOCATIONID = L.ID;
+
+INSERT INTO USER VALUES (03829, 'DAN', 'BRATT', 'STEVENS CREEK', 'SLD@GMAIL.COM', 4089386284, 85720, 0);
+INSERT INTO USER VALUES (00048, 'BRIAN', 'KIM', 'SUNNYVALE', 'LSKD@GMAIL.COM', 4082616803, 56720, 0);
+INSERT INTO RESIDENT VALUES (85720, 'SUNNYVALE', NULL);
+INSERT INTO RESIDENT VALUES (56720, 'SAN JOSE', NULL);
+INSERT INTO PAYMENT VALUES (02837, 'MC');
+INSERT INTO PAYMENT VALUES (37169, 'VISA');
+INSERT INTO STUDENTREGISTRATION VALUES(30283, 03829, 'PAIED', 29173, 02837);
+INSERT INTO STUDENTREGISTRATION VALUES(58372, 00048, 'PENDING', 02937, 37169);
+
+SELECT * 
+FROM USER U, PAYMENT P, STUDENTREGISTRATION S, SECTION SE
+WHERE S.STUDENTID = U.ID AND S.PAYMENTID = P.ID AND S.SECTIONID = SE.ID;
+
+Two recommendation that mentioned in prior assignment that I can utlize to improve data schema are using hash partition for Student Registration and using partition by range for User table. Because the point of Student Registration table is to quickly give out information about what this particular one student, hash partition will be helpful, as it is good for selecting one or two value quickly from big database. Also, Student Registration table can have multiple fees whose id's are not always organized in an easily ordered, numerical manner. Since User table is always organized in an easily ordered, numerical manner, it will be best to apply partition by range. 
+Two other recommendations are using integer or string consistency in payment method and user type. It will make easier for view and database manager to identify which is which. 
